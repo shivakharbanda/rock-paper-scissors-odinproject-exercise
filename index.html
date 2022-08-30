@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scisor</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice() {
+            let num = Math.floor(Math.random() * 10);
+
+            if (num <= 3) {
+                return "ROCK";
+            } else if (num > 3 && num <=6){
+                return "PAPER";
+            } else {
+                return "SCISSORS";
+            };
+        };
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection == computerSelection) {
+                return "TIE";
+            } else {
+
+                if (playerSelection == "ROCK") {
+
+                    if (computerSelection == "PAPER") {
+                        return "YOU LOOSE! paper beats rock";
+                    } else if ( computerSelection == "SCISSORS") {
+                        return "YOU WIN! rock beats scissors";
+                    }
+
+                } else if (playerSelection == "PAPER") {
+
+                    if (computerSelection == "SCISSORS") {
+                        return "YOU LOOSE! scissors beat paper";
+                    } else if (computerSelection == "ROCK") {
+                        return "YOU WIN! paper beats rock";
+                    }
+                } else if (playerSelection == "SCISSORS") {
+
+                    if (computerSelection == "PAPER") {
+                        return "YOU WIn! scissors beat paper";
+                    } else if (computerSelection == "ROCK") {
+                        return "YOU LOOSE! ROCK beats scissors";
+                    }
+                    
+                }
+            };
+        };
+
+        function checkInput(input) {
+            if (input === "ROCK" || input === "PAPER" || input === "SCISSORS") {
+                return "true";
+            } else {
+                return "Invalid input please enter either Rock or paper or scissors";
+            }
+        };
+
+        function gameResult(scoreComputer, scorePlayer) {
+            if (scoreComputer > scorePlayer) {
+                return "YOU LOOSE" + " " + scorePlayer + ":" + scoreComputer
+            } else if (scoreComputer < scorePlayer) {
+                return "YOU WOn" + " " + scorePlayer + ":" + scoreComputer
+            }
+        }
+
+        function game() {
+            let scoreComputer = 0;
+            let scorePlayer = 0;
+
+            for (let i = 0; i < 5; i++) {
+                let playerSelection = prompt("Enter - Rock, paper or scissor");
+                playerSelection = playerSelection.toUpperCase();
+                
+
+                let inputCheck =  checkInput(playerSelection);
+
+                if (inputCheck != "true") {
+                    return inputCheck
+                    break
+                }
+
+                let computerSelection = getComputerChoice();
+
+                let round = playRound(playerSelection, computerSelection);
+                console.log(round);
+
+                if (round == "YOU WIN! rock beats scissors" || round == "YOU WIN! paper beats rock" || round == "YOU WIn! scissors beat paper") {
+                    scorePlayer = scorePlayer + 1;
+                } else if (round == "TIE") {
+                    continue;
+                } else {
+                    scoreComputer = scoreComputer + 1;
+                }
+            }
+
+            return gameResult(scoreComputer, scorePlayer);
+        }
+
+        console.log(game());
+    </script>
+</body>
+</html>
