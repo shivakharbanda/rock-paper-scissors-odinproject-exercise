@@ -92,7 +92,7 @@ function checkGame() {
 
         if (Number(AIscore.textContent)> Number(HUMANscore.textContent)) {
             alert(`You Lost. Game Over`)
-        } else if (Number(AIscore.textContent)== Number(HUMANscore.textContent)) {
+        } else if (Number(AIscore.textContent) === Number(HUMANscore.textContent)) {
             alert(`Game Tied`)
         } else if (Number(AIscore.textContent)< Number(HUMANscore.textContent)) {
             alert("CONGRATULATIONS!!!!!!!!! YOU WON!!!!!")
